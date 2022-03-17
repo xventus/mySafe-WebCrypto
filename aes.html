@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Utility</title>
+  </head>
+
+  <body onload="checkMySafe();">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+     <!--
+    <script src="mysafe/mysafe.js"> </script>
+    <script src="mysafe/sym.js"> </script>
+    <script src="mysafe/asym.js"> </script>
+    <script src="mysafe/hash.js"> </script>
+    <script src="mysafe/enc.js"> </script>
+    <script src="mysafe/utils.js"> </script>
+    <script src="mysafe/scrypt.js"> </script>
+    -->         
+    <script src="mysafe-1.0.min.js"> </script>
+    <script src="aespg.js"> </script>
+
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Utility</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link" href="conversion.html">Conversion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="hash.html">Hash</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="hmac.html">Hmac</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="ecc.html">ECC</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="aes.html">AES</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="pdk.html">PDK</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="pdk.html">SCRYPT</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="hkdf.html">HKDF</a>
+        </li>
+      </ul>
+     
+    </div>
+  </div>
+</nav>
+
+</br>
+</br>
+
+<main class="container">  
+  <div class="bg-light p-5 rounded">
+    <h1>AES</h1> <i class="bi bi-arrow-right"></i>
+    <p class="lead">It is used for generating key and encrypting messages using AES-GCM. The message format is IV | encpayload | TAG</p>
+
+    <div class="mb-3">
+        <label for="convertSelector" class="form-label">Plain data format</label>
+        <select class="form-select" aria-label="" id="convertSelector">
+        <option value="A">Text - ASCII</option>
+        <option value="U" selected="selected">Text - UTF8</option>
+        <option value="H">Hex</option>
+        <option value="B">Base64</option>
+        </select>
+   
+        <label for="inputData" class="form-label">Input plain data</label>
+        <textarea class="form-control" id="inputData" rows="3"  placeholder="enter plain data"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="convertSelector2" class="form-label">Encrypted data format</label>
+        <select class="form-select" aria-label="" id="convertSelector2">
+        <option value="H" selected="selected">Hex</option>
+        <option value="B">Base64</option>
+        </select>
+   
+        <label for="inputEData" class="form-label">Encrypted data</label>
+        <textarea class="form-control" id="inputEData" rows="3"  placeholder="enter encrypted data"></textarea>
+    </div>
+    
+    
+    <div class="mb-3">
+        <label for="convertSelectorKey" class="form-label">Encryption key</label>
+        <select class="form-select" aria-label="" id="convertSelectorKey">
+        <option value="H" selected="selected">Hex</option>
+        <option value="B">Base64</option>
+        </select>
+   
+        <label for="inputKey" class="form-label">Encryption key</label>
+        <textarea class="form-control" id="inputKey" rows="3"  placeholder="enter encryption key or generate it"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="inputL" class="form-label">Length in bytes of the encryption key</label>
+        <input class="form-control" id="inputL" type="number" min="1" value="256"></input>
+    </div>
+
+    <a class="btn btn-primary" onclick="encrypt()" role="button">Encrypt</a>
+    <a class="btn btn-primary" onclick="decrypt()" role="button">Decrypt</a>
+    <a class="btn btn-primary" onclick="generate()" role="button">AES key generate</a>  
+  </div>
+
+
+  <div id="conversionAlert" class="hidden"  role="alert">
+      
+  </div>
+
+
+</main>
+
+  </body>
+</html>
