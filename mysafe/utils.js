@@ -91,7 +91,7 @@ mysafe.utils.base642Bytes =  function (base64) {
         throw new mysafe.exception.invalidParam("invalid base64");
     }
 
-    return bytes.buffer;
+    return new Uint8Array(bytes.buffer);
 }
 
 /**
