@@ -158,7 +158,15 @@ mysafe.sym.pbkdf2DerivationBits = async function(passphraseKey, saltBuffer, iter
    return derivedBits;
  }
    
-
+/**
+ * FireFox implementation
+ * @param {*} passphraseKey 
+ * @param {*} saltBuffer 
+ * @param {*} iterations 
+ * @param {*} bitslen 
+ * @param {*} hashDef 
+ * @returns 
+ */
  mysafe.sym.pbkdf2DerivationBits2 = async function(passphraseKey, saltBuffer, iterations, bitslen, hashDef =  "SHA-256") {
 
   var out = new Uint8Array(0);
