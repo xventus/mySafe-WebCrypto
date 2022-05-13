@@ -178,3 +178,30 @@ mysafe.utils.utf82string =  function(indata) {
     return outString;
 }
 
+/**
+ * converts a positive number to a 32-bit representation and stores it in an array at position
+ * @param {Uint8Array} nativearray array 
+ * @param {number} uint32value positive number
+ * @param {number} offset storage position
+ * @returns 
+ */
+ mysafe.utils.uint322array = function (nativearray, uint32value, offset =0) {
+	nativearray[offset++] = ((uint32value & 0xFF000000) >> 24);
+	nativearray[offset++] = ((uint32value & 0x00FF0000) >> 16);
+	nativearray[offset++] = ((uint32value & 0x0000FF00) >> 8);
+	nativearray[offset++] = ((uint32value & 0X000000FF) );
+	return nativearray;
+}
+
+/**
+ * Connects two arrays of the same type
+ * @param {*} a 1st array
+ * @param {*} b 2nd array
+ * @returns concated array
+ */
+ mysafe.utils.concatTypedArrays = function (a, b) { 
+  var c = new (a.constructor)(a.length + b.length);
+  c.set(a, 0);
+  c.set(b, a.length);
+  return c;
+}

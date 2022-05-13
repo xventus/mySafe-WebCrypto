@@ -158,4 +158,30 @@ mysafe.sym.pbkdf2DerivationBits = async function(passphraseKey, saltBuffer, iter
    return derivedBits;
  }
    
- 
+
+ mysafe.sym.pbkdf2DerivationBits2 = async function(passphraseKey, saltBuffer, iterations, bitslen, hashDef =  "SHA-256") {
+
+  var out = new Uint8Array(0);
+  var block = new (saltBuffer.constructor)(saltBuffer.length + 4);
+  block.set(saltBuffer, 0); 
+  const len = bitslen / 8;
+  var num = 0;
+  var md, prev, i, j;
+  while (out.length < len) {
+    num++;
+    cryptocom.misc.uint322array(block, num, saltBuffer.length );
+    prev = await cryptocom.hashes.hmac(passphraseKey, block, hashDef);
+    md = new Uint8Array(prev);
+    i = 0;
+    while (++i < iterations) {
+      prev = new Uint8Array(await cryptocom.hashes.hmac(passphraseKey, prev, hashDef));
+      j = -1;
+      while (++j < prev.length) {
+        md[j] ^= prev[j]
+      }
+    }
+    out = cryptocom.misc.concatTypedArrays(out, md);
+  }
+
+  return  out.slice(0, len).buffer;
+ }

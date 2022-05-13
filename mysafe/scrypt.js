@@ -129,7 +129,7 @@ mysafe.scrypt.cpyRegion = function (src, srcFrom, dst, dstFrom) {
   */
 mysafe.scrypt.scryptBits =  async function (password, salt, N, r, p, length, alg='SHA-256') {
  
-    const bl = await mysafe.sym.pbkdf2DerivationBits(password, salt, 1, p * 128 * r * 8, alg);
+    const bl = await mysafe.sym.pbkdf2DerivationBits2(password, salt, 1, p * 128 * r * 8, alg);
     var B = new Uint32Array(bl);
     var len = B.length / p;
   
@@ -138,7 +138,7 @@ mysafe.scrypt.scryptBits =  async function (password, salt, N, r, p, length, alg
      mysafe.scrypt.cpyRegion(mysafe.scrypt.scryptROMix(block, N), 0, B, i * len);
     }
   
-    return mysafe.sym.pbkdf2DerivationBits(password, B, 1, length, alg);  
+    return mysafe.sym.pbkdf2DerivationBits2(password, B, 1, length, alg);  
   };
   
   
