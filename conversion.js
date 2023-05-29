@@ -52,11 +52,13 @@ async function  conversionAsync() {
     
     if (binary.length!=0) {  
       document.getElementById("HexOutput").innerText = mysafe.utils.bytes2Hex(binary);
+      document.getElementById("HexOutput2").innerText = mysafe.utils.bytes2HexSep(binary);
       document.getElementById("B64Output").innerText = mysafe.utils.bytes2Base64(binary);
       document.getElementById("AsciiOutput").innerText = mysafe.utils.bytes2Ascii(binary); 
       document.getElementById("UTFOutput").innerText = mysafe.utils.utf82string(binary); 
     } else {
       document.getElementById("HexOutput").innerText ="";
+      document.getElementById("HexOutput2").innerText ="";
       document.getElementById("B64Output").innerText ="";
       document.getElementById("AsciiOutput").innerText ="";
       document.getElementById("UTFOutput").innerText = "";

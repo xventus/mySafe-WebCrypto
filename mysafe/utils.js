@@ -49,6 +49,26 @@ mysafe.utils.bytes2Hex =  function(bytes) {
     return hexBytes.join("");
 }
 
+
+mysafe.utils.bytes2HexSep =  function(bytes) {
+    if (!bytes)
+        return null;
+
+    bytes = new Uint8Array(bytes);
+    var hexBytes = [];
+
+    for (var i = 0; i < bytes.length; ++i) {
+        var byteString = bytes[i].toString(16);
+        if (byteString.length < 2)
+            byteString = "0" + byteString;
+        hexBytes.push("0x");
+        hexBytes.push(byteString);
+        if (i != (bytes.length-1)) hexBytes.push(", ");
+    }
+
+    return hexBytes.join("");
+}
+
 /**
  * converts a hex string to a byte array
  * @param {string} hexString  - hexa string
